@@ -55,6 +55,7 @@ namespace cs._2020_10_07_struct
         public int HP => __warrior.Health;
         public Chest Chest => __warrior.Chest;
         public List<Ammo> Ammos => __warrior.Ammos;
+        public bool Alive => __alive;
         
 
         /// <summary>

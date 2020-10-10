@@ -53,18 +53,34 @@ namespace cs._2020_10_07_struct
             __human_players = players;
             __timer.Interval = 100;
             __timer.Tick += onTimerEvent;
-            __timer.Enabled = true;
-            __timer.Start();
+            __timer.Enabled = false;
             
             __enemy_mov_timer.Interval = Config.AIReactionDelay;
             __enemy_mov_timer.Tick += onEnemyMovTimerEvent;
-            __enemy_mov_timer.Enabled = true;
-            __enemy_mov_timer.Start();
+            __enemy_mov_timer.Enabled = false;
 
             __collectable_spawn_timer.Interval = Config.CollectableSpawnInterval;
             __collectable_spawn_timer.Tick += onCollectableSpawnEvent;
+            __collectable_spawn_timer.Enabled = false;
+        }
+
+        public void Start()
+        {
+            __timer.Enabled = true;
+            __timer.Start();
+            
+            __enemy_mov_timer.Enabled = true;
+            __enemy_mov_timer.Start();
+            
             __collectable_spawn_timer.Enabled = true;
             __collectable_spawn_timer.Start();
+        }
+
+        public void Stop()
+        {
+            __timer.Stop();
+            __enemy_mov_timer.Stop();
+            __collectable_spawn_timer.Stop();
         }
 
         public void AddNewPlayer()
@@ -250,9 +266,23 @@ namespace cs._2020_10_07_struct
         {
             for (int i = (int)__human_players; i < __gamers.Count; i++)
             {
+                int who_will_die = Config.HumanPlayerIndex0;
+                
+                if (!__gamers[who_will_die].Alive)
+                {
+                    for (int j = 0; j < __gamers.Count; j++)
+                    {
+                        if (__gamers[j].Alive)
+                        {
+                            who_will_die = j;
+                            break;
+                        }
+                    }
+                }
+                
                 __rnd = new Random(__rnd.Next()*i);
-                double far = Math.Pow(Math.Abs(__gamers[i].X - __gamers[Config.HumanPlayerIndex0].X), 2);
-                far += Math.Pow(Math.Abs(__gamers[i].Y - __gamers[Config.HumanPlayerIndex0].Y), 2);
+                double far = Math.Pow(Math.Abs(__gamers[i].X - __gamers[who_will_die].X), 2);
+                far += Math.Pow(Math.Abs(__gamers[i].Y - __gamers[who_will_die].Y), 2);
                 far = Math.Sqrt(far);
 
                 if (far < __gamers[i].ShootRaduis/2.0)
@@ -261,8 +291,8 @@ namespace cs._2020_10_07_struct
                 }
                 else
                 {
-                    AddShootTask(__gamers[i], __gamers[Config.HumanPlayerIndex0].X,
-                        __gamers[Config.HumanPlayerIndex0].Y);
+                    AddShootTask(__gamers[i], __gamers[who_will_die].X,
+                        __gamers[who_will_die].Y);
                 }
             }
         }

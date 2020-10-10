@@ -58,6 +58,15 @@ namespace cs._2020_10_07_struct
             panelHUD.Size = new Size(550, 50);
             panelHUD.Location = new Point(5, Config.GameFieldSize.Height+10);
             this.Size = new Size(Math.Max(Config.GameFieldSize.Width+25, panelHUD.Size.Width+10), Config.GameFieldSize.Height+100);
+
+            if (MessageBox.Show("Start game!") == DialogResult.OK)
+            {
+                __game.Start();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void pictureGame_Paint(object sender, PaintEventArgs e)
@@ -67,6 +76,16 @@ namespace cs._2020_10_07_struct
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    __game.Stop();
+                    if (MessageBox.Show("Continue?") == DialogResult.OK)
+                        __game.Start();
+                    else
+                        this.Close();
+                    break;
+            }
         }
 
         private void timerDraw_Tick(object sender, EventArgs e)
