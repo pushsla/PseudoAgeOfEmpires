@@ -46,8 +46,13 @@ namespace cs._2020_10_07_struct
         public bool Movturn()
         {
             bool burnt = (Math.Abs(destX - X) < Ammo.Speed && Math.Abs(destY - Y) < Ammo.Speed);
-            
-            if (burnt) return burnt;
+
+            if (burnt)
+            {
+                X = destX;
+                Y = destY;
+                return burnt;
+            }
             float dx, dy, ax, ay;
             ax = Math.Abs(destX - X);
             ay = Math.Abs(destY - Y);
