@@ -206,6 +206,7 @@ namespace cs._2020_10_07_struct
                                 __gamers[i].NewChest(__collectable_items[c].Item as Chest);
                                 break;
                         }
+
                         __collectable_items.RemoveAt(c);
                         c--;
                     }
@@ -225,6 +226,7 @@ namespace cs._2020_10_07_struct
 
                 __move_queue[i] = movtask;
             }
+            
         }
 
         /// <summary>
@@ -280,7 +282,11 @@ namespace cs._2020_10_07_struct
         {
             __gamers.Clear();
             for (int i = 0; i < n; i++)
+            {
+                __rnd = new Random(__rnd.Next()*i);
                 __gamers.Add(new Controller(i));
+                __gamers.Last().MoveTo(__rnd.Next(Config.GameFieldSize.Width), __rnd.Next(Config.GameFieldSize.Height));
+            }
         }
     }
 }

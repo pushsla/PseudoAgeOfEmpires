@@ -127,6 +127,13 @@ namespace cs._2020_10_07_struct
             return shut;
         }
 
+        public bool Touch(Controller who)
+        {
+            bool touched = (Math.Abs(__xpos - who.X) <= __width/2 + who.Width/2);
+            touched = touched && (Math.Abs(__ypos - who.Y) <= __height / 2 + who.Height/2);
+
+            return touched;
+        }
         /// <summary>
         /// Перемещает Controller на заданное смещение по X и Y
         /// </summary>
@@ -141,6 +148,13 @@ namespace cs._2020_10_07_struct
             if (__ypos <= 0) __ypos = 0;
             if (__xpos >= 1000) __xpos = 1000;
             if (__ypos >= 1000) __ypos = 1000;
+        }
+
+        public void MoveTo(int ax, int ay)
+        {
+            if (!__alive) return;
+            __xpos = ax;
+            __ypos = ay;
         }
 
         /// <summary>
