@@ -26,7 +26,7 @@ namespace cs._2020_10_07_struct
         {
             int x, y;
             Image img;
-            switch ((Item as Chest).Type)
+            switch (__chest.Type)
             {
                 case 1:
                     img = Properties.Resources._armor1;

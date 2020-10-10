@@ -215,9 +215,10 @@ namespace cs._2020_10_07_struct
                 {
                     if (shotask.Sender.ID != controller.ID && controller.Touch(shotask.X, shotask.Y, shotask.Ammo.Radius))
                     {
-                        controller.GetDamage(shotask.Ammo.Damage);
                         __shoot_queue.RemoveAt(i);
+                        controller.GetDamage(shotask.Ammo.Damage);
                         i--;
+                        break;
                     }
                 }
             }
@@ -264,20 +265,16 @@ namespace cs._2020_10_07_struct
         /// <param name="e"></param>
         private void onEnemyMovTimerEvent(object sender, EventArgs e)
         {
+            int trytofind_whodies_count = 0;
             for (int i = (int)__human_players; i < __gamers.Count; i++)
             {
                 int who_will_die = Config.HumanPlayerIndex0;
                 
-                if (!__gamers[who_will_die].Alive)
+                while (!__gamers[who_will_die].Alive && trytofind_whodies_count <= 50)
                 {
-                    for (int j = 0; j < __gamers.Count; j++)
-                    {
-                        if (__gamers[j].Alive)
-                        {
-                            who_will_die = j;
-                            break;
-                        }
-                    }
+                    __rnd = new Random(__rnd.Next()*i);
+                    who_will_die = __rnd.Next(__gamers.Count);
+                    trytofind_whodies_count++;
                 }
                 
                 __rnd = new Random(__rnd.Next()*i);

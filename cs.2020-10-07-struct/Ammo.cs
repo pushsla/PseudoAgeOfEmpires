@@ -27,25 +27,25 @@ namespace cs._2020_10_07_struct
                     break;
                 case 1:
                     __damage = 10;
-                    __speed = 20;
+                    __speed = 25;
                     __radius = 2;
                     __type = 1;
                     break;
                 case 2:
                     __damage = 20;
-                    __speed = 13;
+                    __speed = 20;
                     __radius = 3;
                     __type = 2;
                     break;
                 case 3:
                     __damage = 30;
-                    __speed = 9;
+                    __speed = 15;
                     __radius = 4;
                     __type = 3;
                     break;
                 case 4:
                     __damage = 100;
-                    __speed = 3;
+                    __speed = 10;
                     __radius = 4;
                     __type = 4;
                     break;
