@@ -6,8 +6,10 @@ namespace cs._2020_10_07_struct
     {
         int X { get; }
         int Y { get; }
+        string Type { get; }
+        object Item { get; }
 
-        bool Touch(int ax, int ay, int radius);
+        bool Touched(Controller who);
         void Draw(Graphics agraphics);
     }
 }

@@ -3,10 +3,11 @@
 namespace cs._2020_10_07_struct
 {
     /// <summary>
-    /// Структура, описывающая броню Warrior.
+    /// Класс, описывающая броню Warrior.
     /// </summary>
-    public struct Chest
+    public class Chest
     {
+        public static readonly int TypesCount = 4;
         private int __defence_buff, __speed_buff, __health;
         private int __type;
         private const int BASE_HP = 100;

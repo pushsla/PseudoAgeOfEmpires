@@ -35,6 +35,9 @@ namespace cs._2020_10_07_struct
         /// Текущее положение Warrior на карте по Y
         /// </summary>
         public int Y => __ypos;
+
+        public int Width => __width;
+        public int Height => __height;
         /// <summary>
         /// Уникальный ID. Равен значению ID у хранимого Warrior при условии использования конструктора
         /// </summary>
@@ -76,10 +79,17 @@ namespace cs._2020_10_07_struct
                 new Bitmap("0turn.png"),
                 new Bitmap("0turn.png"),
                 new Bitmap("0up.png"),
+                
                 new Bitmap("1down.png"),
                 new Bitmap("1turn.png"),
                 new Bitmap("1turn.png"),
                 new Bitmap("1up.png"),
+                
+                new Bitmap("2down.png"),
+                new Bitmap("2turn.png"),
+                new Bitmap("2turn.png"),
+                new Bitmap("2up.png"),
+                
                 new Bitmap("2down.png"),
                 new Bitmap("2turn.png"),
                 new Bitmap("2turn.png"),
@@ -172,8 +182,8 @@ namespace cs._2020_10_07_struct
             if (!__alive)
                 agraphics.FillRectangle(Brushes.Black, x, y, __width, __height);
 
-            var img = __sprites[4*__warrior.Chest.Type + position_code];
-            agraphics.DrawImage(__sprites[position_code], x, y, __width, __height);
+            var img = __sprites[(Chest.TypesCount)*__warrior.Chest.Type + position_code];
+            agraphics.DrawImage(img, x, y, __width, __height);
         }
 
         /// <summary>

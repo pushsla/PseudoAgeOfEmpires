@@ -20,12 +20,14 @@ namespace cs._2020_10_07_struct
         private Timer __timer = new Timer();
         // Таймер, управляющий поведением противников
         private Timer __enemy_mov_timer = new Timer();
+        // Таймер, отвечающий за появление на карте объектов
+        private Timer __collectable_spawn_timer = new Timer();
         // Очередь выстрелов (выполняется параллельно)
         private List<ShootQueueTask> __shoot_queue = new List<ShootQueueTask>();
         // Очередь перемещений (выполняется параллельно)
         private List<MoveQueueTask> __move_queue = new List<MoveQueueTask>();
         // Список предметов на карте, которые можно подобрать
-        private List<ICollectable> __collectable_items;
+        private List<ICollectable> __collectable_items = new List<ICollectable>();
         // Список всех игроков Controller
         private List<Controller> __gamers = new List<Controller>();
         // Количество игроков, не управляемых автоматически
@@ -51,13 +53,17 @@ namespace cs._2020_10_07_struct
             __timer.Interval = 100;
             __timer.Tick += onTimerEvent;
             __timer.Enabled = true;
-            
             __timer.Start();
             
             __enemy_mov_timer.Interval = Config.AIReactionDelay;
             __enemy_mov_timer.Tick += onEnemyMovTimerEvent;
             __enemy_mov_timer.Enabled = true;
             __enemy_mov_timer.Start();
+
+            __collectable_spawn_timer.Interval = Config.CollectableSpawnInterval;
+            __collectable_spawn_timer.Tick += onCollectableSpawnEvent;
+            __collectable_spawn_timer.Enabled = true;
+            __collectable_spawn_timer.Start();
         }
 
         /// <summary>
@@ -151,6 +157,11 @@ namespace cs._2020_10_07_struct
             {
                 agraphics.FillEllipse(Brushes.Crimson, shotask.X, shotask.Y, 5, 5);
             }
+
+            foreach (var collectable in __collectable_items)
+            {
+                collectable.Draw(agraphics);
+            }
         }
 
         /// <summary>
@@ -179,6 +190,24 @@ namespace cs._2020_10_07_struct
                         controller.GetDamage(shotask.Ammo.Damage);
                         __shoot_queue.RemoveAt(i);
                         i--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < __gamers.Count; i++)
+            {
+                for (int c = 0; c < __collectable_items.Count; c++)
+                {
+                    if (__collectable_items[c].Touched(__gamers[i]))
+                    {
+                        switch (__collectable_items[c].Type)
+                        {
+                            case "Chest":
+                                __gamers[i].NewChest(__collectable_items[c].Item as Chest);
+                                break;
+                        }
+                        __collectable_items.RemoveAt(c);
+                        c--;
                     }
                 }
             }
@@ -224,6 +253,25 @@ namespace cs._2020_10_07_struct
             }
         }
 
+        private void onCollectableSpawnEvent(object sender, EventArgs e)
+        {
+            switch (__rnd.Next(1))
+            {
+                case 0:
+                    __rnd = new Random(__rnd.Next());
+                    int x = __rnd.Next(Config.GameFieldSize.Width);
+                    int y = __rnd.Next(Config.GameFieldSize.Height);
+                    __rnd = new Random(__rnd.Next());
+                    __collectable_items.Add(new ChestCollectable(x, y, __rnd.Next(1,4)));
+                    break;
+            }
+
+            if (__collectable_items.Count > Config.MaxCollectables)
+            {
+                __collectable_items.RemoveAt(0);
+            }
+        }
+
         /// <summary>
         /// Создание нового набора игроков
         /// </summary>
@@ -233,7 +281,6 @@ namespace cs._2020_10_07_struct
             __gamers.Clear();
             for (int i = 0; i < n; i++)
                 __gamers.Add(new Controller(i));
-            __gamers[Config.HumanPlayerIndex0].NewChest(new Chest(1));
         }
     }
 }
