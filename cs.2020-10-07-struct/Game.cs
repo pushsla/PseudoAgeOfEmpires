@@ -268,13 +268,17 @@ namespace cs._2020_10_07_struct
             int trytofind_whodies_count = 0;
             for (int i = (int)__human_players; i < __gamers.Count; i++)
             {
-                int who_will_die = Config.HumanPlayerIndex0;
+                int who_will_die = __rnd.Next(__gamers.Count);
                 
-                while (!__gamers[who_will_die].Alive && trytofind_whodies_count <= 50)
+                while ((!__gamers[who_will_die].Alive || __gamers[who_will_die].Team == __gamers[i].Team))
                 {
                     __rnd = new Random(__rnd.Next()*i);
                     who_will_die = __rnd.Next(__gamers.Count);
-                    trytofind_whodies_count++;
+                    if (++trytofind_whodies_count > __gamers.Count*20)
+                    {
+                        who_will_die = i;
+                        break;
+                    }
                 }
                 
                 __rnd = new Random(__rnd.Next()*i);

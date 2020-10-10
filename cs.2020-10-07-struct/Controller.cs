@@ -14,6 +14,7 @@ namespace cs._2020_10_07_struct
     {
         // Таймер перезарядки патрона
         private Timer __cooldown_timer;
+        private int __team;
         private int __id;
         // Хранимый Warrior
         private Warrior __warrior;
@@ -42,6 +43,8 @@ namespace cs._2020_10_07_struct
         /// Уникальный ID. Равен значению ID у хранимого Warrior при условии использования конструктора
         /// </summary>
         public int ID => __id;
+
+        public int Team => __team;
         /// <summary>
         /// Скорость хранимого Warrior
         /// </summary>
@@ -62,11 +65,13 @@ namespace cs._2020_10_07_struct
         /// Необходимо укзаать __уникальный__ id. То же значение ID будет присвоено хранимому Warrior
         /// </summary>
         /// <param name="id">уникальный идентификатор для Controller и хранимого Warrior</param>
-        public Controller(int id)
+        /// <param name="team">Команда. Допустимые: 1,2. Если указано неверно, используется id%2</param>
+        public Controller(int id, int team=-1)
         {
             __can_shoot = true;
             __cooldown_timer = new Timer();
             __id = id;
+            __team = (team < 0 || team > 2) ? __id % 2 : team;
             __warrior = new Warrior(id);
             __xpos = 0;
             __ypos = 0;
@@ -194,7 +199,9 @@ namespace cs._2020_10_07_struct
             int x = __xpos - __width / 2;
             int y = __ypos - __height / 2;
 
-            Image img = __sprites[(Chest.TypesCount) * __warrior.Chest.Type + position_code];;
+            Image img = __sprites[(Chest.TypesCount) * __warrior.Chest.Type + position_code];
+            Brush team_marker = (__team == 0) ? Brushes.Black : Brushes.Beige;
+            Pen team_marker_pen = (__team == 0) ? Pens.Black : Pens.Beige;
 
             if (!__alive)
             {
@@ -202,6 +209,8 @@ namespace cs._2020_10_07_struct
             }
 
             agraphics.DrawImage(img, x, y, __width, __height);
+            agraphics.DrawRectangle(team_marker_pen, x, y - 5, __width, 5);
+            agraphics.FillRectangle(team_marker, x, y - 5, (int)((__width/100.0)*__warrior.Health), 5);
         }
 
         /// <summary>
