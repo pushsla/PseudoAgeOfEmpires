@@ -45,7 +45,7 @@
             // 
             // pictureGame
             // 
-            this.pictureGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureGame.Image = ((System.Drawing.Image) (resources.GetObject("pictureGame.Image")));
             this.pictureGame.Location = new System.Drawing.Point(12, 12);

@@ -75,25 +75,25 @@ namespace cs._2020_10_07_struct
 
             __sprites = new List<Image>
             {
-                new Bitmap("0down.png"),
-                new Bitmap("0turn.png"),
-                new Bitmap("0turn.png"),
-                new Bitmap("0up.png"),
+                Properties.Resources._0down,
+                Properties.Resources._0turn,
+                Properties.Resources._0turnright,
+                Properties.Resources._0up,
                 
-                new Bitmap("1down.png"),
-                new Bitmap("1turn.png"),
-                new Bitmap("1turn.png"),
-                new Bitmap("1up.png"),
+                Properties.Resources._1down,
+                Properties.Resources._1turn,
+                Properties.Resources._1turnright,
+                Properties.Resources._1up,
                 
-                new Bitmap("2down.png"),
-                new Bitmap("2turn.png"),
-                new Bitmap("2turn.png"),
-                new Bitmap("2up.png"),
+                Properties.Resources._2down,
+                Properties.Resources._2turn,
+                Properties.Resources._2turnright,
+                Properties.Resources._2up,
                 
-                new Bitmap("2down.png"),
-                new Bitmap("2turn.png"),
-                new Bitmap("2turn.png"),
-                new Bitmap("2up.png")
+                Properties.Resources._2down,
+                Properties.Resources._2turn,
+                Properties.Resources._2turn,
+                Properties.Resources._2up
             };
 
             __cooldown_timer.Interval = Config.GamerShootCooldown;
@@ -192,11 +192,14 @@ namespace cs._2020_10_07_struct
         {
             int x = __xpos - __width / 2;
             int y = __ypos - __height / 2;
-            
-            if (!__alive)
-                agraphics.FillRectangle(Brushes.Black, x, y, __width, __height);
 
-            var img = __sprites[(Chest.TypesCount)*__warrior.Chest.Type + position_code];
+            Image img = __sprites[(Chest.TypesCount) * __warrior.Chest.Type + position_code];;
+
+            if (!__alive)
+            {
+                img = Properties.Resources._dead;
+            }
+
             agraphics.DrawImage(img, x, y, __width, __height);
         }
 

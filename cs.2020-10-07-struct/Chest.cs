@@ -13,6 +13,24 @@ namespace cs._2020_10_07_struct
         private const int BASE_HP = 100;
 
         public int BASEHP => BASE_HP;
+        /// <summary>
+        /// Степень защиты брони
+        /// </summary>
+        public int Defencebuff => __defence_buff;
+        /// <summary>
+        /// Бонус к скорости Warrior в этой броне
+        /// </summary>
+        public int Speedbuff => __speed_buff;
+        /// <summary>
+        /// Тип брони от 0 до 3
+        /// 0 -- броня без защиты и без бонусов
+        /// 1..3 -- увеличивается защита и именьшается скорость
+        /// </summary>
+        public int Type => __type;
+        /// <summary>
+        /// Остаток прочности брони
+        /// </summary>
+        public int Health => __health;
 
         /// <summary>
         /// Необходимо указать тип брони
@@ -72,24 +90,5 @@ namespace cs._2020_10_07_struct
             return -delta;
 
         }
-
-        /// <summary>
-        /// Степень защиты брони
-        /// </summary>
-        public int Defencebuff => __defence_buff;
-        /// <summary>
-        /// Бонус к скорости Warrior в этой броне
-        /// </summary>
-        public int Speedbuff => __speed_buff;
-        /// <summary>
-        /// Тип брони от 0 до 3
-        /// 0 -- броня без защиты и без бонусов
-        /// 1..3 -- увеличивается защита и именьшается скорость
-        /// </summary>
-        public int Type => __type;
-        /// <summary>
-        /// Остаток прочности брони
-        /// </summary>
-        public int Health => __health;
     }
 }

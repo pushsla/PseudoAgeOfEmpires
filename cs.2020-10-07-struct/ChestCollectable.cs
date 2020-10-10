@@ -18,17 +18,34 @@ namespace cs._2020_10_07_struct
             __chest = new Chest(chest_type);
             __xpos = ax;
             __ypos = ay;
-            __width = 10;
-            __height = 10; 
+            __width = 20;
+            __height = 26;
         }
 
         public void Draw(Graphics agraphics)
         {
             int x, y;
+            Image img;
+            switch ((Item as Chest).Type)
+            {
+                case 1:
+                    img = Properties.Resources._armor1;
+                    break;
+                case 2:
+                    img = Properties.Resources._armor2;
+                    break;
+                case 3:
+                    img = Properties.Resources._armor3;
+                    break;
+                default:
+                    img = img = Properties.Resources._armor1;
+                    break;
+            }
+            
             x = __xpos - __width / 2;
             y = __ypos - __height / 2;
-            agraphics.FillRectangle(Brushes.Aqua, x, y, __width, __height);
-            agraphics.DrawString($"{__chest.Type}", new Font("Arial", 7), Brushes.Black, x, y);
+            agraphics.DrawImage(img, x, y, __width, __height);
+            agraphics.DrawString($"{__chest.Type}", new Font("Arial", 10), Brushes.Aqua, x, y);
         }
 
         public bool Touched(Controller who)

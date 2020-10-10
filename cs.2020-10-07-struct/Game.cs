@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using cs._2020_10_07_struct.Properties;
 
 namespace cs._2020_10_07_struct
 {
@@ -64,6 +65,17 @@ namespace cs._2020_10_07_struct
             __collectable_spawn_timer.Tick += onCollectableSpawnEvent;
             __collectable_spawn_timer.Enabled = true;
             __collectable_spawn_timer.Start();
+        }
+
+        public void AddNewPlayer()
+        {
+            __gamers.Add(new Controller(__gamers.Count));
+        }
+
+        public void AddNewPlayer(int ax, int ay)
+        {
+            AddNewPlayer();
+            __gamers.Last().MoveTo(ax, ay);
         }
 
         /// <summary>

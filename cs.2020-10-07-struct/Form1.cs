@@ -45,7 +45,7 @@ namespace cs._2020_10_07_struct
 {
     public partial class Form1 : Form
     {
-        private Game __game = new Game(Config.GamersCount,(uint)Config.HumanPlayerCount);
+        private Game __game = new Game(Config.InitialGamersCount,(uint)Config.HumanPlayerCount);
         
         public Form1()
         {
@@ -101,6 +101,9 @@ namespace cs._2020_10_07_struct
                     break;
                 case MouseButtons.Right:
                     __game.AddMovTask(__game.Players[Config.HumanPlayerIndex0], e.X, e.Y);
+                    break;
+                case MouseButtons.Middle:
+                    __game.AddNewPlayer(e.X, e.Y);
                     break;
             }
         }
