@@ -1,0 +1,10 @@
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\bin\Debug\cs._2020_10_07_struct.exe.config
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\bin\Debug\cs._2020_10_07_struct.exe
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\bin\Debug\cs._2020_10_07_struct.pdb
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs.2020-10-07-struct.csprojAssemblyReference.cache
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs._2020_10_07_struct.Properties.Resources.resources
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs.2020-10-07-struct.csproj.GenerateResource.cache
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs.2020-10-07-struct.csproj.CoreCompileInputs.cache
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs._2020_10_07_struct.exe
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs._2020_10_07_struct.pdb
+D:\Data\Documents\Content\Study\Univer\Works\OOP\Aut20\cs.2020-10-07-struct\cs.2020-10-07-struct\obj\Debug\cs._2020_10_07_struct.Form1.resources
