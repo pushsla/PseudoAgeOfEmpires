@@ -39,6 +39,7 @@
             this.labelChest = new System.Windows.Forms.Label();
             this.labelAmmo = new System.Windows.Forms.Label();
             this.panelHUD = new System.Windows.Forms.Panel();
+            this.labelPool = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize) (this.pictureGame)).BeginInit();
             this.panelHUD.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +104,7 @@
             // 
             // panelHUD
             // 
+            this.panelHUD.Controls.Add(this.labelPool);
             this.panelHUD.Controls.Add(this.labelHP);
             this.panelHUD.Controls.Add(this.labelAmmo);
             this.panelHUD.Controls.Add(this.progressHP);
@@ -110,8 +112,16 @@
             this.panelHUD.Controls.Add(this.labelChest);
             this.panelHUD.Location = new System.Drawing.Point(12, 718);
             this.panelHUD.Name = "panelHUD";
-            this.panelHUD.Size = new System.Drawing.Size(557, 45);
+            this.panelHUD.Size = new System.Drawing.Size(746, 45);
             this.panelHUD.TabIndex = 6;
+            // 
+            // labelPool
+            // 
+            this.labelPool.Location = new System.Drawing.Point(550, 14);
+            this.labelPool.Name = "labelPool";
+            this.labelPool.Size = new System.Drawing.Size(183, 23);
+            this.labelPool.TabIndex = 6;
+            this.labelPool.Text = "RandomPool: ";
             // 
             // Form1
             // 
@@ -132,6 +142,7 @@
         private System.Windows.Forms.Label labelAmmo;
         private System.Windows.Forms.Label labelChest;
         private System.Windows.Forms.Label labelHP;
+        private System.Windows.Forms.Label labelPool;
         private System.Windows.Forms.Panel panelHUD;
         private System.Windows.Forms.PictureBox pictureGame;
         private System.Windows.Forms.ProgressBar progressChest;

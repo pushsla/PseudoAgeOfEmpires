@@ -109,6 +109,8 @@ namespace cs._2020_10_07_struct
 
             string chesttext = $"Chest ({__game.Players[Config.HumanPlayerIndex0].Chest.Type}): ";
             labelChest.Text = chesttext;
+
+            labelPool.Text = $"{RandomQueue.CurrentPoolSize}";
         }
 
         private void pictureGame_MouseClick(object sender, MouseEventArgs e)

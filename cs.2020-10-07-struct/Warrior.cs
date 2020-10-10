@@ -86,7 +86,7 @@ namespace cs._2020_10_07_struct
             __shoots.Clear();
             for (int i = 0; i < AMMO_COUNT; i++)
             {
-                __shoots.Add(new Ammo(__rnd.Next(1, 5)));
+                __shoots.Add(new Ammo(RandomQueue.Next(1, 5)));
             }
         }
 

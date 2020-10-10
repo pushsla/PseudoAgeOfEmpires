@@ -16,7 +16,7 @@ namespace cs._2020_10_07_struct
     /// </summary>
     public class Game
     {
-        private Random __rnd = new Random();
+        private Random RandomQueue = new Random();
         // Таймер, выполняющий события из очередей
         private Timer __timer = new Timer();
         // Таймер, управляющий поведением противников
@@ -268,12 +268,12 @@ namespace cs._2020_10_07_struct
             int trytofind_whodies_count = 0;
             for (int i = (int)__human_players; i < __gamers.Count; i++)
             {
-                int who_will_die = __rnd.Next(__gamers.Count);
+                int who_will_die = RandomQueue.Next(__gamers.Count);
                 
                 while ((!__gamers[who_will_die].Alive || __gamers[who_will_die].Team == __gamers[i].Team))
                 {
-                    __rnd = new Random(__rnd.Next()*i);
-                    who_will_die = __rnd.Next(__gamers.Count);
+                    //RandomQueue = new Random(RandomQueue.Next()*i);
+                    who_will_die = RandomQueue.Next(__gamers.Count);
                     if (++trytofind_whodies_count > __gamers.Count*20)
                     {
                         who_will_die = i;
@@ -281,14 +281,14 @@ namespace cs._2020_10_07_struct
                     }
                 }
                 
-                __rnd = new Random(__rnd.Next()*i);
+                //RandomQueue = new Random(RandomQueue.Next()*i);
                 double far = Math.Pow(Math.Abs(__gamers[i].X - __gamers[who_will_die].X), 2);
                 far += Math.Pow(Math.Abs(__gamers[i].Y - __gamers[who_will_die].Y), 2);
                 far = Math.Sqrt(far);
 
                 if (far < __gamers[i].ShootRaduis/2.0)
                 {
-                    AddMovTask(__gamers[i], __rnd.Next(Config.GameFieldSize.Width), __rnd.Next(Config.GameFieldSize.Height));
+                    AddMovTask(__gamers[i], RandomQueue.Next(Config.GameFieldSize.Width), RandomQueue.Next(Config.GameFieldSize.Height));
                 }
                 else
                 {
@@ -300,14 +300,14 @@ namespace cs._2020_10_07_struct
 
         private void onCollectableSpawnEvent(object sender, EventArgs e)
         {
-            switch (__rnd.Next(1))
+            switch (RandomQueue.Next(1))
             {
                 case 0:
-                    __rnd = new Random(__rnd.Next());
-                    int x = __rnd.Next(Config.GameFieldSize.Width);
-                    int y = __rnd.Next(Config.GameFieldSize.Height);
-                    __rnd = new Random(__rnd.Next());
-                    __collectable_items.Add(new ChestCollectable(x, y, __rnd.Next(1,4)));
+                    //RandomQueue = new Random(RandomQueue.Next());
+                    int x = RandomQueue.Next(Config.GameFieldSize.Width);
+                    int y = RandomQueue.Next(Config.GameFieldSize.Height);
+                    //RandomQueue = new Random(RandomQueue.Next());
+                    __collectable_items.Add(new ChestCollectable(x, y, RandomQueue.Next(1,4)));
                     break;
             }
 
@@ -326,9 +326,9 @@ namespace cs._2020_10_07_struct
             __gamers.Clear();
             for (int i = 0; i < n; i++)
             {
-                __rnd = new Random(__rnd.Next()*i);
+                ///RandomQueue = new Random(RandomQueue.Next()*i);
                 __gamers.Add(new Controller(i));
-                __gamers.Last().MoveTo(__rnd.Next(Config.GameFieldSize.Width), __rnd.Next(Config.GameFieldSize.Height));
+                __gamers.Last().MoveTo(RandomQueue.Next(Config.GameFieldSize.Width), RandomQueue.Next(Config.GameFieldSize.Height));
             }
         }
     }
