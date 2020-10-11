@@ -202,24 +202,25 @@ namespace cs._2020_10_07_struct
             for (int i = 0; i < __shoot_queue.Count; i++)
             {
                 ShootQueueTask shotask = __shoot_queue[i];
-
-                if (shotask.Movturn())
-                {
-                    __shoot_queue.RemoveAt(i);
-                    i--;
-                    continue;
-                }
-
+                bool finished = shotask.Movturn();
                 __shoot_queue[i] = shotask;
+                
                 foreach (var controller in __gamers)
                 {
                     if (shotask.Sender.ID != controller.ID && controller.Touch(shotask.X, shotask.Y, shotask.Ammo.Radius))
                     {
+                        finished = false;
                         __shoot_queue.RemoveAt(i);
                         controller.GetDamage(shotask.Ammo.Damage);
                         i--;
                         break;
                     }
+                }
+
+                if (finished)
+                {
+                    __shoot_queue.RemoveAt(i);
+                    i--;
                 }
             }
 

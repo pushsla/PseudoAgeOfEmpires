@@ -4,7 +4,7 @@ namespace cs._2020_10_07_struct
 {
     public static class Config
     {
-        public static readonly Size GameFieldSize = new Size(1150, 650);
+        public static readonly Size GameFieldSize = new Size(1000, 650);
         public static readonly int InitialGamersCount = 5;
         public static readonly int HumanPlayerCount = 1;
         public static readonly int HumanPlayerIndex0 = 0;
